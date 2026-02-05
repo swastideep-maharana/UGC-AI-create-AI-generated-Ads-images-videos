@@ -33,7 +33,7 @@ export default function HeroSection() {
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 240, damping: 70, mass: 1 }}
                 >
-                    Build, Deploy & Talk to AI Agents in Seconds.
+                    Create viral <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-black to-black">UGC ads</span> in seconds.
                 </motion.h1>
                 <motion.p className="text-center text-gray-100 text-base/7 max-w-md mt-6"
                     initial={{ y: 50, opacity: 0 }}
@@ -41,7 +41,7 @@ export default function HeroSection() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2, type: "spring", stiffness: 320, damping: 70, mass: 1 }}
                 >
-                    Design AI assistants that research, plan, and execute tasks — all powered by your prompts.
+                    Upload product images and a model photo - our AI instantly produces professional lifestyle imagery and short-form videos optimized for commercials & Reels.
                 </motion.p>
 
                 <motion.div className="flex flex-col md:flex-row max-md:w-full items-center gap-4 md:gap-3 mt-6"
@@ -51,13 +51,14 @@ export default function HeroSection() {
                     transition={{ type: "spring", stiffness: 320, damping: 70, mass: 1 }}
                 >
                     <button className="btn max-md:w-full glass py-3">
-                        Create Agent
+                        Start generating - it's free!
                     </button>
                     <button className="btn max-md:w-full glass flex items-center justify-center gap-2 py-3">
                         <PlayCircleIcon className="size-4.5" />
                         Watch Demo
                     </button>
                 </motion.div>
+                 
             </motion.section>
         </>
     );

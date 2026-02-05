@@ -10,26 +10,22 @@ export default function Features() {
     const featuresData = [
         {
             icon: BotIcon,
-            title: "Autonomous Agents",
-            description: "Agents that plan, execute & think step-by-step.",
+            title: "Seconds to Create",
+            description: "Upload product images and a model photo - our AI instantly produces professional lifestyle imagery and short-form videos optimized for commercials & Reels.",
         },
         {
             icon: BrainIcon,
-            title: "Memory & Learning",
-            description: "Agents retain memory and improve over time.",
+            title: "Built for modern brands",
+            description: "Generate ads in all key formats: 9:16 (Reels/Shorts), 1:1 (Instagram/Facebook), and 16:9 (YouTube/Display).",
         },
-        {
-            icon: ZapIcon,
-            title: "Real-time Execution",
-            description: "Fast responses with async task processing.",
-        }
+       
     ];
 
     return (
         <section className="mt-32">
             <SectionTitle
-                title="Agent features"
-                description="Design AI assistants that research, plan, and execute tasks — all powered by your prompts."
+                title="Features"
+                description="Our AI instantly produces professional lifestyle imagery and short-form videos optimized for commercials & Reels"
             />
 
             <div className="flex flex-wrap items-center justify-center gap-6 mt-10 px-6">
