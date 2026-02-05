@@ -22,7 +22,7 @@ export default function App() {
             </div>
             <main className='px-4'>
                 <HeroSection />
-                <TrustedCompanies />
+                {/* <TrustedCompanies /> */}
                 <Features />
                 <WorkflowSteps />
                 <Testimonials />

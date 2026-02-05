@@ -1,6 +1,8 @@
 import { MenuIcon, XIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
+import assets from '../../public/assets/assets';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,10 +10,10 @@ export default function Navbar() {
 
     const links = [
         { name: 'Home', href: '/' },
-        { name: 'Agents', href: '#agents' },
-        { name: 'Use Cases', href: '#use-cases' },
-        { name: 'Pricing', href: '#pricing' },
-        { name: 'Docs', href: '#docs' }
+        { name: 'Create', href: '/generate' },
+        { name: 'Community', href: '/community' },
+        { name: 'Plans', href: '/plans' },
+        { name: 'Docs', href: '/docs' }
     ];
 
     useEffect(() => {
@@ -38,15 +40,15 @@ export default function Navbar() {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 250, damping: 70, mass: 1 }}
             >
-                <a href='https://prebuiltui.com?utm_source=genesis'>
-                    <img src='/assets/logo.svg' alt='logo' className='h-8.5 w-auto' width={205} height={48} />
-                </a>
+                <Link to="/" onClick={()=> scrollTo(0,0)}>
+                    <img src={assets.logo} alt='logo' className='h-8.5 w-auto' width={205} height={48} />
+                </Link>
 
                 <div className='hidden items-center space-x-10 md:flex'>
                     {links.map((link) => (
-                        <a key={link.name} href={link.href} className='transition hover:text-gray-300'>
+                        <Link onClick={()=> scrollTo(0,0)} key={link.name} to={link.href} className='transition hover:text-gray-300'>
                             {link.name}
-                        </a>
+                        </Link>
                     ))}
                     <a href='/' className='btn glass'>
                         Sign Up
