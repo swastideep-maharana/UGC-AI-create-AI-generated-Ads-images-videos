@@ -9,47 +9,47 @@ export default function PricingPlans() {
         {
             icon: RocketIcon,
             title: 'Starter',
-            description: 'For individuals and small teams',
-            price: '$19',
+            description: 'Try the platform at no cost',
+            price: '$10',
+            credits: 25,
             buttonText: 'Get Started',
             features: [
-                'Up to 10 projects',
-                '10 AI tasks/month',
-                'Basic text generation',
-                'Simple chatbot access',
-                'Email support only',
-                'Community resources'
+                '25 Credits',
+                'Standard quality',
+                'No watermark',
+                'Slower generation speed',
+                'Email support'
             ],
         },
         {
             icon: ZapIcon,
-            title: 'Professional',
-            description: 'For growing teams and startups',
-            price: '$49',
+            title: 'Pro',
+            description: 'Creators & small teams',
+            price: '$29',
+            credits: 80,
             mostPopular: true,
             buttonText: 'Upgrade Now',
             features: [
-                'Unlimited AI tasks',
-                'API integration',
-                'Text & image outputs',
-                'Priority chat & email support',
-                'Detailed analytics',
-                'Team collaboration'
+                '80 Credits',
+                'HD quality',
+                'No watermark',
+                'Video generation',
+                'Priority support',
             ],
         },
         {
             icon: CrownIcon,
-            title: 'Enterprise',
-            description: 'For enterprises and agencies',
-            price: '$149',
-            buttonText: 'Contact Sales',
+            title: 'Ultra',
+            description: 'Scale across teams and agencies',
+            price: '$99',
+            credits: 300,
+            buttonText: 'Upgrade Now For Ultra',
             features: [
-                'Custom AI models',
-                'Team access control',
-                'Dedicated account manager',
-                'Secure private API',
-                'SLA uptime guarantee',
-                '24/7 premium support'
+                '300 Credits',
+                'FHD quality',
+                'No watermark',
+                'Fast generation speed',
+                'Chat + Email support',
             ],
         },
     ];
@@ -82,6 +82,7 @@ export default function PricingPlans() {
                         </div>
                         <h3 className='mt-4 text-2xl font-semibold'>
                             {item.price} <span className='text-sm font-normal'>/month</span>
+                             <p className='text-green-200 mt-5'>credits {item.credits}</p>
                         </h3>
                         <p className='text-gray-200 mt-3'>{item.description}</p>
                         <button className={`mt-7 rounded-md w-full btn ${item.mostPopular ? 'bg-white text-gray-800' : 'glass'}`}>
