@@ -7,29 +7,22 @@ export default function FaqSection() {
     const [isOpen, setIsOpen] = useState(false);
     const data = [
         {
-            question: 'Do I need coding or design experience to use PrebuiltUI?',
-            answer: "Basic coding knowledge (HTML/CSS, Tailwind) helps, but advanced design skills aren't required. You can use components as-is or customize them.",
+            question: 'How does the Ai generation work?',
+            answer: "We leverage state-of-the-art diffusion modeks trained on million of product images to blend your product into realistic scenes while presserving details, lighting and reflections ",
         },
         {
-            question: 'What is PrebuiltUI and how does it help developers and designers?',
-            answer: 'PrebuiltUI provides ready-to-use, customizable UI components and templates, saving time for developers and designers.',
+            question: 'Do i own the generated images?',
+            answer: 'Yes you recive full commercial rights to any images and videos generated on the platform.Use them for ads,ecommerce,social meadia and more.',
         },
         {
-            question: 'Can I use PrebuiltUI components in my existing project?',
-            answer: 'Yes, components can be integrated into HTML, React, Next.js, Vue, and other projects using Tailwind CSS.',
+            question: 'Can I cancel anytime?',
+            answer: 'Yes, you can cancel form your dashboard. you will retain access through the end of your billing period.',
         },
         {
-            question: 'How customizable are the generated components?',
-            answer: 'Components are highly customizable with Tailwind utility classes, theming, and structural adjustments.',
+            question: 'What input formats do you support?',
+            answer: 'We accept JPG,PNG and WEBP.Outputs are high-resolutin PNGs and MP$s optimized for social platforms.',
         },
-        {
-            question: 'Does PrebuiltUI support team collaboration?',
-            answer: "There's no clear documentation on built-in collaboration features. Check their support for team options.",
-        },
-        {
-            question: 'Can I try PrebuiltUI before purchasing a plan?',
-            answer: 'Yes, you can try PrebuiltUI with full access to features.',
-        },
+        
     ];
 
     return (
