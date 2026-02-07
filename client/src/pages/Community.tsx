@@ -1,36 +1,44 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { Project } from '../types';
+import { dummyGenerations } from '../../public/assets/assets';
+import { Loader2Icon } from 'lucide-react';
+import ProjectCard from '../components/ProjectCard';
 const Community = () => {
-  return (
-    <div className="container mx-auto py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-white mb-4">Community Creations</h1>
-        <p className="text-gray-400">See what others are creating with UGC Ad Maker</p>
+  const [ projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  const fetchProjects = async()=>{
+    setTimeout(()=>{
+      setProjects(dummyGenerations);
+      setLoading(false);
+    },3000)
+  }
+
+  useEffect(()=>{
+    fetchProjects();
+  },[])
+
+  return loading?(
+    <div className='flex items-center justify-center min-h-screen'>
+      <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600'>
+        <Loader2Icon className='size-12' />
+      </div>
+    </div>
+  ):(
+    <div className='min-h-screen text-white p-6 md:p-12 mt-28'>
+      <div className='max-w-6xl mx-auto'>
+        <header>
+          <h1 className='text-3xl md:text-4xl font-semibold mb-4'>Community</h1>
+          <p className='text-gray-400'>Browse and get inspired by other creators</p>
+        </header>
+        {/* projectslist */}
+        <div className='columns-1 sm:columns-2 lg:columns-3 gap-4'>
+          {projects.map((project)=>(
+            <ProjectCard key={project.id} gen={project} setGenerations={setProjects} forCommunity={true}/>
+          ))}
+        </div>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-          <div key={i} className="group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-300">
-            <div className="aspect-[9/16] bg-gray-800 relative">
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                <button className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/30 hover:bg-white/30 transition-colors">
-                  View Case Study
-                </button>
-              </div>
-            </div>
-            <div className="p-4">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
-                <div>
-                  <p className="text-sm font-medium text-white">Creator Name</p>
-                  <p className="text-xs text-gray-500">2 hours ago</p>
-                </div>
-              </div>
-              <h3 className="text-white font-semibold truncate">Modern Tech Ad for Startup</h3>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
