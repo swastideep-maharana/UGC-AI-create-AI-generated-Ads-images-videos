@@ -2,7 +2,7 @@ import { MenuIcon, XIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
-import assets from '../../public/assets/assets';
+import assets from '../assets/assets';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,10 +10,10 @@ export default function Navbar() {
 
     const links = [
         { name: 'Home', href: '/' },
-        { name: 'Create', href: '/generate' },
+        { name: 'Generator', href: '/generator' },
         { name: 'Community', href: '/community' },
-        { name: 'Plans', href: '/plans' },
-        { name: 'Docs', href: '/docs' }
+        { name: 'My Library', href: '/my-generations' },
+        { name: 'Pricing', href: '/pricing' }
     ];
 
     useEffect(() => {
@@ -62,9 +62,9 @@ export default function Navbar() {
 
             <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-black/20 text-lg font-medium backdrop-blur-2xl transition duration-300 md:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 {links.map((link) => (
-                    <a key={link.name} href={link.href} onClick={() => setIsOpen(false)}>
+                    <Link key={link.name} to={link.href} onClick={() => { setIsOpen(false); scrollTo(0,0); }}>
                         {link.name}
-                    </a>
+                    </Link>
                 ))}
 
 
