@@ -1,106 +1,58 @@
 import SectionTitle from "../components/section-title";
-import { CheckIcon, CrownIcon, RocketIcon, ZapIcon } from "lucide-react";
+import { Coins, ZapIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useUser, PricingTable } from "@clerk/clerk-react";
 
 export default function PricingPlans() {
-    const ref = useRef([]);
-    const data = [
-        {
-            icon: RocketIcon,
-            title: 'Starter',
-            description: 'Try the platform at no cost',
-            price: '$10',
-            credits: 25,
-            buttonText: 'Get Started',
-            features: [
-                '25 Credits',
-                'Standard quality',
-                'No watermark',
-                'Slower generation speed',
-                'Email support'
-            ],
-        },
-        {
-            icon: ZapIcon,
-            title: 'Pro',
-            description: 'Creators & small teams',
-            price: '$29',
-            credits: 80,
-            mostPopular: true,
-            buttonText: 'Upgrade Now',
-            features: [
-                '80 Credits',
-                'HD quality',
-                'No watermark',
-                'Video generation',
-                'Priority support',
-            ],
-        },
-        {
-            icon: CrownIcon,
-            title: 'Ultra',
-            description: 'Scale across teams and agencies',
-            price: '$99',
-            credits: 300,
-            buttonText: 'Upgrade Now For Ultra',
-            features: [
-                '300 Credits',
-                'FHD quality',
-                'No watermark',
-                'Fast generation speed',
-                'Chat + Email support',
-            ],
-        },
-    ];
+    const { user, isSignedIn } = useUser();
+
+    const currentCredits = String(user?.publicMetadata?.credits || 0);
 
     return (
         <section className="mt-12">
-            <SectionTitle
-                title="Our Pricing Plans"
-                description="Pick a plan that fits your growth. Every 2 credits can generate 1 high-quality AI video or 2 professional ad images."
-            />
-
-            <div className='mt-8 flex flex-wrap items-center justify-center gap-6'>
-                {data.map((item, index) => (
-                    <motion.div key={index} className='group w-full max-w-80 glass p-6 rounded-xl hover:-translate-y-0.5'
-                        initial={{ y: 50, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: `${index * 0.15}`, type: "spring", stiffness: 320, damping: 70, mass: 1 }}
-                        ref={(el) => (ref.current[index] = el)}
-                        onAnimationComplete={() => {
-                            const card = ref.current[index];
-                            if (card) {
-                                card.classList.add("transition", "duration-300");
-                            }
-                        }}
+            <div className="flex flex-col items-center mb-8">
+                <SectionTitle
+                    title="Our Pricing Plans"
+                    description="Pick a plan that fits your growth. Manage your subscription and credits directly through our secure billing portal."
+                />
+                
+                {isSignedIn && (
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="mt-6 flex items-center gap-3 bg-purple-600/10 border border-purple-500/20 px-6 py-2.5 rounded-2xl shadow-xl shadow-purple-500/5 mb-8"
                     >
-                        <div className="flex items-center w-max ml-auto text-xs gap-2 glass rounded-full px-3 py-1">
-                            <item.icon className='size-3.5' />
-                            <span>{item.title}</span>
+                        <div className="p-1.5 bg-purple-500/20 rounded-full">
+                            <Coins className="size-4 text-purple-400" />
                         </div>
-                        <h3 className='mt-4 text-2xl font-semibold'>
-                            {item.price} <span className='text-sm font-normal'>/month</span>
-                             <p className='text-green-200 mt-5'>credits {item.credits}</p>
-                        </h3>
-                        <p className='text-gray-200 mt-3'>{item.description}</p>
-                        <button className={`mt-7 rounded-md w-full btn ${item.mostPopular ? 'bg-white text-gray-800' : 'glass'}`}>
-                            {item.buttonText}
-                        </button>
-                        <div className='mt-6 flex flex-col'>
-                            {item.features.map((feature, index) => (
-                                <div key={index} className='flex items-center gap-2 py-2'>
-                                    <div className='rounded-full glass border-0 p-1'>
-                                        <CheckIcon className='size-3 text-white' strokeWidth={3} />
-                                    </div>
-                                    <p>{feature}</p>
-                                </div>
-                            ))}
+                        <div className="flex flex-col items-start">
+                            <span className="text-xs text-purple-300 font-bold uppercase tracking-widest">Available Balance</span>
+                            <div className="flex items-baseline gap-1.5">
+                                <span className="text-2xl font-black text-white">{currentCredits}</span>
+                                <span className="text-xs text-gray-500 font-medium lowercase">Credits</span>
+                            </div>
                         </div>
                     </motion.div>
-                ))}
+                )}
             </div>
+
+            <div className="max-w-6xl mx-auto px-4">
+                <PricingTable 
+                    appearance={{
+                        elements: {
+                            pricingTableRoot: "bg-transparent",
+                            pricingTableCard: "glass border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300",
+                            pricingTableCardTitle: "text-2xl font-bold text-white",
+                            pricingTableCardPrice: "text-3xl font-black text-white",
+                            pricingTableCardDescription: "text-gray-400",
+                            pricingTableCardButton: "bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-purple-600/20",
+                            pricingTableCardFeature: "text-gray-300",
+                            pricingTableCardFeatureIcon: "text-purple-400"
+                        }
+                    }}
+                />
+            </div>
+
             <div className='mt-12 max-w-4xl mx-auto'>
                 <div className='p-8 rounded-3xl bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/20 text-center relative overflow-hidden'>
                     <div className='absolute top-0 right-0 p-4 opacity-10'>
