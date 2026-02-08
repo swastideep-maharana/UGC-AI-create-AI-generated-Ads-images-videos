@@ -10,7 +10,7 @@ export default function Navbar() {
 
     const links = [
         { name: 'Home', href: '/' },
-        { name: 'Generator', href: '/generator' },
+        { name: 'Generator', href: '/generate' },
         { name: 'Community', href: '/community' },
         { name: 'My Library', href: '/my-generations' },
         { name: 'Pricing', href: '/pricing' }

@@ -1,31 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { dummyGenerations } from '../assets/assets';
+import { Project } from '../types';
+import { Loader2Icon } from 'lucide-react';
+import ProjectCard from '../components/ProjectCard';
+import { useNavigate } from 'react-router-dom';
 
 const MyGenerations = () => {
-  return (
-    <div className="container mx-auto py-12">
-      <div className="flex justify-between items-end mb-8">
-        <div>
-          <h1 className="text-4xl font-bold text-white mb-2">My Library</h1>
-          <p className="text-gray-400">Manage and download your generated ads</p>
-        </div>
-        <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
-          New Generation
-        </button>
-      </div>
-      
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-12 text-center">
-        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold text-white mb-2">No generations yet</h3>
-        <p className="text-gray-400 mb-6">Start by creating your first AI-generated ad.</p>
-        <button className="text-purple-400 hover:text-purple-300 font-medium">
-          Try the generator &rarr;
-        </button>
+  const navigate = useNavigate();
+
+const [ generations, setGenerations] = useState<Project[]>([]);
+const [loading, setLoading] = useState(true);
+  
+  const fetchMyGenerations = async()=>{
+    setTimeout(()=>{
+      setGenerations([dummyGenerations[0]]);
+      setLoading(false);
+    },3000)
+  }
+
+  useEffect(()=>{
+    fetchMyGenerations();
+  },[])
+
+
+
+  return loading?(
+    <div className='flex items-center justify-center min-h-screen'>
+      <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600'>
+        <Loader2Icon className='size-12' />
       </div>
     </div>
+  ):(
+   <div className='min-h-screen text-white p-6 md:p-12 mt-28'>
+    <div className='max-w-6xl mx-auto'>
+      <header>
+        <h1 className='text-3xl md:text-4xl font-semibold mb-4'>My Generations</h1>
+        <p className='text-gray-400'>view and manage your AI generated ads</p>
+      </header>
+      {/* generations list */}
+      <div className='columns-1 sm:columns-2 lg:columns-3 gap-4'>
+        {generations.map((gen)=>(<ProjectCard key={gen.id} gen={gen} setGenerations={setGenerations} />))}
+      </div>
+
+      {generations.length === 0 && (
+        <div className='text-center py-12'>
+          <h3 className='text-gray-400'>No generations yet</h3>
+          <p className='text-gray-400'>Generate your first ad to get started</p>
+          <button onClick={()=>navigate('/generate')} className='mt-4 px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition'>Generate</button>
+        </div>
+      )}
+    </div>
+   </div>
   );
 };
 

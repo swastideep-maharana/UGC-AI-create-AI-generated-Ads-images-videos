@@ -1,7 +1,9 @@
 import { PlayCircleIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
+    const navigate = useNavigate();
 
     return (
             <motion.section className="flex flex-col items-center">
@@ -12,7 +14,7 @@ export default function HeroSection() {
                     transition={{ delay: 0.2, type: "spring", stiffness: 320, damping: 70, mass: 1 }}
                 >
                     <p>Smart, Fast, Always Active.</p>
-                    <button className="btn glass py-1 px-3 text-xs">
+                    <button onClick={() => navigate('/generate')} className="btn glass py-1 px-3 text-xs">
                         Launch App
                     </button>
                 </motion.div>
@@ -39,7 +41,7 @@ export default function HeroSection() {
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 320, damping: 70, mass: 1 }}
                 >
-                    <button className="btn max-md:w-full glass py-3">
+                    <button onClick={() => navigate('/generate')} className="btn max-md:w-full glass py-3">
                         Start generating - it's free!
                     </button>
                     <button className="btn max-md:w-full glass flex items-center justify-center gap-2 py-3">

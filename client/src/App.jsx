@@ -11,7 +11,7 @@ export default function App() {
         <Routes>
             <Route element={<MainLayout />}>
                 <Route index element={<Home />} />
-                <Route path="generator" element={<Generator />} />
+                <Route path="generate" element={<Generator />} />
                 <Route path="community" element={<Community />} />
                 <Route path="my-generations" element={<MyGenerations />} />
                 <Route path="pricing" element={<Pricing />} />

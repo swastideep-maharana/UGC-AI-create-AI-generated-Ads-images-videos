@@ -1,7 +1,9 @@
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function CallToAction() {
+    const navigate = useNavigate();
     return (
         <motion.div className="flex flex-col max-w-5xl mt-40 px-4 mx-auto items-center justify-center text-center py-16 rounded-xl glass"
             initial={{ y: 150, opacity: 0 }}
@@ -25,7 +27,7 @@ export default function CallToAction() {
             >
                 Join thousands of brands creating viral Ads with AI. No creadut card required . Start creating now.
             </motion.p>
-            <motion.button className="btn glass transition-none flex items-center gap-2 mt-8"
+            <motion.button onClick={() => navigate('/generate')} className="btn glass transition-none flex items-center gap-2 mt-8"
                 initial={{ y: 80, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
