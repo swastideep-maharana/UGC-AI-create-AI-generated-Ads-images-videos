@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Project } from "../types";
 import { dummyGenerations } from "../assets/assets";
 import { Loader2Icon, DownloadIcon, Share2, ArrowLeft, RefreshCcw, ImageIcon, VideoIcon, Sparkles } from "lucide-react";
+import Loading from "../components/loading";
 
 const Results = () => {
     const { id } = useParams();
@@ -25,13 +26,7 @@ const Results = () => {
     }, [id]);
 
     if (loading) {
-        return (
-            <div className='flex items-center justify-center min-h-screen'>
-                <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600'>
-                    <Loader2Icon className='size-12' />
-                </div>
-            </div>
-        );
+        return <Loading />;
     }
 
     if (!project) return null;
