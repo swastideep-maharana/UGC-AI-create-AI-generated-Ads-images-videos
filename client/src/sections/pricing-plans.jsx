@@ -55,16 +55,16 @@ export default function PricingPlans() {
     ];
 
     return (
-        <section className="mt-32">
+        <section className="mt-12">
             <SectionTitle
                 title="Our Pricing Plans"
-                description="A visual collection of our most recent works - each piece crafted with intention, emotion and style."
+                description="Pick a plan that fits your growth. Every 2 credits can generate 1 high-quality AI video or 2 professional ad images."
             />
 
-            <div className='mt-12 flex flex-wrap items-center justify-center gap-6'>
+            <div className='mt-8 flex flex-wrap items-center justify-center gap-6'>
                 {data.map((item, index) => (
                     <motion.div key={index} className='group w-full max-w-80 glass p-6 rounded-xl hover:-translate-y-0.5'
-                        initial={{ y: 150, opacity: 0 }}
+                        initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: `${index * 0.15}`, type: "spring", stiffness: 320, damping: 70, mass: 1 }}
@@ -100,6 +100,42 @@ export default function PricingPlans() {
                         </div>
                     </motion.div>
                 ))}
+            </div>
+            <div className='mt-12 max-w-4xl mx-auto'>
+                <div className='p-8 rounded-3xl bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/20 text-center relative overflow-hidden'>
+                    <div className='absolute top-0 right-0 p-4 opacity-10'>
+                        <ZapIcon className='size-24 text-purple-400' />
+                    </div>
+                    
+                    <h4 className='text-xl font-bold mb-4 flex items-center justify-center gap-2'>
+                        <ZapIcon className='size-5 text-purple-400' />
+                        How credits work
+                    </h4>
+                    
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10'>
+                        <div className='bg-white/5 p-6 rounded-2xl border border-white/5 shadow-xl transition-all hover:bg-white/10'>
+                            <div className='text-3xl font-extrabold text-purple-400 mb-1'>10 Credits</div>
+                            <div className='text-gray-400 text-sm font-medium uppercase tracking-widest'>Generates</div>
+                            <div className='mt-4 flex items-center justify-center gap-2'>
+                                <span className='text-2xl font-bold text-white'>5</span>
+                                <span className='text-gray-300'>High-Quality Videos</span>
+                            </div>
+                        </div>
+
+                        <div className='bg-white/5 p-6 rounded-2xl border border-white/5 shadow-xl transition-all hover:bg-white/10'>
+                            <div className='text-3xl font-extrabold text-blue-400 mb-1'>10 Credits</div>
+                            <div className='text-gray-400 text-sm font-medium uppercase tracking-widest'>Generates</div>
+                            <div className='mt-4 flex items-center justify-center gap-2'>
+                                <span className='text-2xl font-bold text-white'>10</span>
+                                <span className='text-gray-300'>Professional AI Ads</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p className='mt-8 text-sm text-gray-500 italic'>
+                        * All credits are monthly and roll over for the ultra plan users.
+                    </p>
+                </div>
             </div>
         </section>
     );

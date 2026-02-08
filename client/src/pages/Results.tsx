@@ -37,9 +37,9 @@ const Results = () => {
     if (!project) return null;
 
     return (
-        <div className="min-h-screen text-white p-6 md:p-12 mt-28">
+        <div className="min-h-screen text-white p-6 md:p-12 mt-20">
             <div className="max-w-6xl mx-auto">
-                <header className="mb-12">
+                <header className="mb-8">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div>
                             <h1 className="text-3xl md:text-4xl font-semibold mb-4">Generation Results</h1>
