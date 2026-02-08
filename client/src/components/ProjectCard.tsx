@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import type { Project } from "../types"
 import { useNavigate } from "react-router-dom"
-import { DownloadIcon, EllipsisIcon, Loader2Icon, Share2, ShareIcon, Trash2Icon } from "lucide-react";
+import { DownloadIcon, EllipsisIcon, Loader2Icon, Share2, Trash2Icon, ArrowRight } from "lucide-react";
 
 
 
@@ -11,21 +11,17 @@ const ProjectCard = ({gen,setGenerations, forCommunity = false}: {gen: Project, 
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleDelete = async(id: string)=>{
-        const confirm = window.confirm('Are you sure you want to delete this generation?');
-        if(!confirm) return;
-        setGenerations(prev => prev.filter(g => g.id !== id));
-    }
-
-    const handlePublish = async(id: string)=>{
-        const confirm = window.confirm('Are you sure you want to publish this generation?');
-        if(!confirm) return;
+        if(!window.confirm('Are you sure you want to delete this generation?')) return;
         setGenerations(prev => prev.filter(g => g.id !== id));
     }
 
     const togglePublish = async(id: string)=>{
-        const confirm = window.confirm('Are you sure you want to publish this generation?');
-        if(!confirm) return;
-        setGenerations(prev => prev.filter(g => g.id !== id));
+        const action = gen.isPublished ? 'unpublish' : 'publish';
+        if(!window.confirm(`Are you sure you want to ${action} this generation?`)) return;
+        
+        setGenerations(prev => prev.map(g => 
+            g.id === id ? { ...g, isPublished: !g.isPublished } : g
+        ));
     }
 
   return (
@@ -91,9 +87,9 @@ const ProjectCard = ({gen,setGenerations, forCommunity = false}: {gen: Project, 
                                     </button>
 
                                     <button onClick={()=>{
-                                        handlePublish(gen.id)
+                                        togglePublish(gen.id)
                                     }} className="w-full flex gap-2 items-center px-4 py-2 hover:bg-white/10 cursor-pointer transition-colors">
-                                        <Share2 className="size-4"/> Publish
+                                        <Share2 className="size-4"/> {gen.isPublished ? 'Unpublish' : 'Publish'}
                                     </button>
                                 </ul>
                             </div>
@@ -135,15 +131,21 @@ const ProjectCard = ({gen,setGenerations, forCommunity = false}: {gen: Project, 
             <div className="mt-4">
                 <h4 className="font-semibold text-sm">User Prompt</h4>
                 <p className="text-gray-400 text-xs mt-2">{gen.userPrompt}</p>
-                 {/* buttons */}
-                {!forCommunity && (
-                    <div className="mt-4 flex gap-2">
-                        <button onClick={()=>{navigate(`/results/${gen.id}`); scrollTo(0,0)}} className="px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition">View Details</button>
-                        <button onClick={()=>{togglePublish(gen.id)}} className="px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition">
+                    <div className="mt-6 flex gap-3">
+                        <button 
+                            onClick={()=>{navigate(`/results/${gen.id}`); window.scrollTo(0,0)}} 
+                            className="flex-1 px-4 py-2.5 bg-purple-600 rounded-xl hover:bg-purple-700 transition flex items-center justify-center gap-2 font-medium shadow-lg shadow-purple-600/20"
+                        >
+                            View Details
+                            <ArrowRight className="size-4" />
+                        </button>
+                        <button 
+                            onClick={()=>{togglePublish(gen.id)}} 
+                            className={`px-4 py-2.5 rounded-xl border transition font-medium ${gen.isPublished ? 'bg-white/5 border-white/10 hover:bg-white/10 text-white' : 'bg-white text-black hover:bg-gray-200 border-transparent'}`}
+                        >
                             {gen.isPublished ? 'Unpublish' : 'Publish'}
                         </button>
                     </div>
-                )}
             </div>
         </div>
       </div>

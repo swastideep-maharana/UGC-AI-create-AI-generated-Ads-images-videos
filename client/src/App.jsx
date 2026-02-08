@@ -5,6 +5,7 @@ import Generator from "./pages/Generator";
 import Community from "./pages/Community";
 import MyGenerations from "./pages/MyGenerations";
 import Pricing from "./pages/Pricing";
+import Results from "./pages/Results";
 
 export default function App() {
     return (
@@ -15,7 +16,7 @@ export default function App() {
                 <Route path="community" element={<Community />} />
                 <Route path="my-generations" element={<MyGenerations />} />
                 <Route path="pricing" element={<Pricing />} />
-                
+                <Route path="results/:id" element={<Results />} />
             </Route>
         </Routes>
     );
